@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="styles.css" type="text/css" rel="stylesheet">
+    <title>CRUD Vue.js</title>
+</head>
+<body>
+    <div id="app" class="container">
+        <h2>Data Mahasiswa</h2>
+        <div class="alert alert-success mb-2 mt-2" v-if="alertMessage" role="alert">
+            {{ alertMessage }}
+        </div>
+
+           <!-- Tambah Data -->
+           <div v-if="showAddForm" class="form-container">
+            <div class="form-header">
+                <h3>Tambah Data Mahasiswa</h3>
+            </div>
+            <div class="form-body">
+                <form @submit.prevent="tambahdata">
+                    <div class="mb-3">
+                        <label for="nim" class="form-label">NIM</label>
+                        <input type="text" class="form-control" id="nim" v-model="newItem.nim" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="nama" v-model="newItem.nama" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jk" class="form-label">Jenis Kelamin</label>
+                        <select class="form-select" id="jk" v-model="newItem.jk" required>
+                            <option value="" disabled>Pilih Jenis Kelamin</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prodi" class="form-label">Prodi</label>
+                        <input type="text" class="form-control" id="prodi" v-model="newItem.prodi" required placeholder="D3/S1-....">
+                    </div>
+                <div class="form-footer">
+                    <button type="button" class="btn btn-secondary" @click="toggleAddForm">Close Form</button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+                </form>
+                </div>
+        </div>
+
+        <!-- Edit Data -->
+        <div v-if="showEditForm" class="form-container">
+            <div class="form-header">
+                <h3>Edit Data Mahasiswa</h3>
+            </div>
+            <div class="form-body">
+                <form @submit.prevent="editsave">
+                    <div class="mb-3">
+                        <label for="editNim" class="form-label">NIM</label>
+                        <input type="text" class="form-control" id="editNim" v-model="editItem.nim" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editNama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="editNama" v-model="editItem.nama" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editJk" class="form-label">Jenis Kelamin</label>
+                        <select class="form-select" id="editJk" v-model="editItem.jk" required>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProdi" class="form-label">Prodi</label>
+                        <input type="text" class="form-control" id="editProdi" v-model="editItem.prodi" required>
+                    </div>
+                    <div class="form-footer">
+                        <button type="button" class="btn btn-secondary" @click="toggleEditForm">Close Form</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div> 
+
+        <button type="button" class="btn btn-primary btn-show mt-3" @click="toggleData">
+            {{ showData ? 'Tutup Data' : 'Tampilkan Data' }}
+        </button>
+        <button type="button" class="btn btn-success mt-3" @click="toggleAddForm">Tambah Data</button>
+        
+        <table class="table table-info" v-if="showData && info.length > 0">
+            <thead class="table-light">
+                <tr>
+                    <th>No</th>
+                    <th>Nim</th>
+                    <th>Nama</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Prodi</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(ang, index) in info" :key="ang.id">
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ ang.nim }}</td>
+                    <td>{{ ang.nama }}</td>
+                    <td>{{ ang.jk }}</td>
+                    <td>{{ ang.prodi }}</td>
+                    <td>
+                        <button class="btn btn-danger" @click="hapus(index, ang.id)">Hapus</button>
+                        <button class="btn btn-warning" @click="openEditForm(ang)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16"></script>
+    <script src="apps.js"></script>
+</body>
+</html>

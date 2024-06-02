@@ -1,0 +1,51 @@
+body{
+    background-color: bisque;
+    margin-top: 25px;
+}
+h2{
+    justify-self: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    text-align: center;
+}
+table{
+    margin-top: 30px;
+    width: 700px;
+}
+
+.form-container{
+    background-color: white;
+    padding:0;
+    border-radius: 7px;
+    margin-bottom: 25px;
+}
+
+.form-header{
+    background-color: blue;
+    color: white;
+    padding:15px ;
+    border-bottom: 1px solid white;
+    border-top-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.form-header h3{
+    margin: 0;
+}
+
+.form-body{
+    padding: 20px;
+}
+
+.form-footer{
+    background-color: white;
+    padding: 15px;
+    border-top: 1px soid white;
+    border-top-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    text-align: right;
+} 
+
+.form-footer .btn{
+    margin-left: 10px;
+}
