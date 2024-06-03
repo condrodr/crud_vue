@@ -63,7 +63,7 @@ var app = new Vue({
         tambahdata() {
             console.log('Adding item:', this.newItem);
             axios.post('database.php', {
-                request: 3,
+                request: 4,
                 nim: this.newItem.nim,
                 nama: this.newItem.nama,
                 jk: this.newItem.jk,
@@ -96,7 +96,7 @@ var app = new Vue({
         editsave() {
             console.log('Saving edits for item:', this.editItem);
             axios.post('database.php', {
-                request: 4,
+                request: 3,
                 id: this.editItem.id,
                 nim: this.editItem.nim,
                 nama: this.editItem.nama,
